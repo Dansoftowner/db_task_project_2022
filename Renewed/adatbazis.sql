@@ -1,30 +1,26 @@
-﻿CREATE DATABASE IF NOT EXISTS szinesz
-	CHARACTER SET utf8
-	COLLATE utf8_hungarian_ci;
-
-USE szinesz;
+﻿USE szinesz;
 
 CREATE TABLE IF NOT EXISTS tanarok(
-  tanarId INT NOT NULL,
+  id INT NOT NULL,
   nev VARCHAR(100) NOT NULL,
-  PRIMARY KEY(tanarId)
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS  osztalyok(
-  osztalyId INT NOT NULL, 
+  id INT NOT NULL, 
   kezdeseve INT NOT NULL,
   vegzeseve INT NOT NULL,
-  PRIMARY KEY(osztalyId)
+  PRIMARY KEY(id)
 );
 
 CREATE TABLE IF NOT EXISTS hallgatok(
-  hallgatoId INT NOT NULL, 
+  id INT NOT NULL, 
   osztalyId INT NOT NULL, 
   nev VARCHAR(100) NOT NULL,
   ferfi BOOLEAN,
   
-  PRIMARY KEY(hallgatoId),
-  FOREIGN KEY(osztalyId) REFERENCES osztalyok(osztalyId)
+  PRIMARY KEY(id),
+  FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
 );
 
 CREATE TABLE IF NOT EXISTS tanitja(
@@ -32,11 +28,11 @@ CREATE TABLE IF NOT EXISTS tanitja(
   tanarId INT NOT NULL,
   osztalyId INT NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(tanarId) REFERENCES tanarok(tanarId),
-  FOREIGN KEY(osztalyId) REFERENCES osztalyok(osztalyId)
+  FOREIGN KEY(tanarId) REFERENCES tanarok(id),
+  FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
 );
 
-INSERT INTO tanarok (tanarId, nev) VALUES
+INSERT INTO tanarok (id, nev) VALUES
 (1, 'Ács János'),
 (2, 'Békés András'),
 (3, 'Dömötör András'),
@@ -65,7 +61,7 @@ INSERT INTO tanarok (tanarId, nev) VALUES
 (32, 'Szinetár Miklós'),
 (33, 'Szirtes Tamás');
 
-INSERT INTO osztalyok (osztalyId, kezdeseve, vegzeseve) VALUES
+INSERT INTO osztalyok (id, kezdeseve, vegzeseve) VALUES
 (1, 2002, 2006),
 (2, 2001, 2005),
 (3, 2004, 2008),
@@ -161,7 +157,7 @@ INSERT INTO osztalyok (osztalyId, kezdeseve, vegzeseve) VALUES
 (93, 2009, 2014),
 (94, 2007, 2012);
 
-INSERT INTO hallgatok (hallgatoId, osztalyid, nev, ferfi) VALUES
+INSERT INTO hallgatok (id, osztalyid, nev, ferfi) VALUES
 (1, 76, 'Somfai Margit (Ulbrich Józsefné)', 0),
 (2, 34, 'Bardóczy Attila', -1),
 (3, 76, 'Veszelei Mária', 0),
