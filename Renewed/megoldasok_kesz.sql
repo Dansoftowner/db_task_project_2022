@@ -19,7 +19,7 @@ DELETE FROM tanarok
 WHERE nev = 'Sipos Edina';
 
 -- 6. feladat:
-INSERT INTO hallgatok (hallgatoId, osztalyid, nev, ferfi)
+INSERT INTO hallgatok (id, osztalyid, nev, ferfi)
   VALUES (1091, 92, 'Bach Kata', 0);
 
 -- 7. feladat:
@@ -46,9 +46,9 @@ SELECT MIN(kezdeseve+1) FROM osztalyok
 WHERE kezdeseve+1 NOT IN ( SELECT kezdeseve FROM osztalyok );
 
 -- 10. feladat:
-SELECT Count(osztalyId) AS hiányzik
+SELECT Count(id) AS hiányzik
 FROM osztalyok
-WHERE osztalyId NOT IN (SELECT osztalyId FROM tanitja);
+WHERE id NOT IN (SELECT osztalyId FROM tanitja);
 
 -- 11. feladat:
 SELECT tanarok.nev, MIN(tanarosztaly.kezdeseve) AS kezdes
