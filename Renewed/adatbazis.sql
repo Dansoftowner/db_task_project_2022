@@ -1,4 +1,10 @@
-﻿USE szinesz;
+﻿DROP DATABASE IF EXISTS szinesz;
+
+CREATE DATABASE szinesz 
+DEFAULT CHARACTER SET utf8 
+COLLATE utf8_hungarian_ci;
+
+USE szinesz;
 
 CREATE TABLE IF NOT EXISTS tanarok(
   id INT NOT NULL,
@@ -20,7 +26,7 @@ CREATE TABLE IF NOT EXISTS hallgatok(
   ferfi BOOLEAN,
   
   PRIMARY KEY(id),
-  FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
+  CONSTRAINT fk_hallgatok_osztalyok FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
 );
 
 CREATE TABLE IF NOT EXISTS tanitja(
@@ -28,8 +34,8 @@ CREATE TABLE IF NOT EXISTS tanitja(
   tanarId INT NOT NULL,
   osztalyId INT NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(tanarId) REFERENCES tanarok(id),
-  FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
+  CONSTRAINT fk_tanitja_tanarok FOREIGN KEY(tanarId) REFERENCES tanarok(id),
+  CONSTRAINT fk_tanitja_osztalyok FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
 );
 
 INSERT INTO tanarok (id, nev) VALUES
