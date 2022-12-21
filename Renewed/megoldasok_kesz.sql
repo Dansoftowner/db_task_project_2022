@@ -53,10 +53,10 @@ WHERE osztalyId NOT IN (SELECT osztalyId FROM tanitja);
 -- 11. feladat:
 SELECT tanarok.nev, MIN(tanarosztaly.kezdeseve) AS kezdes
 FROM tanarok, tanitja, osztalyok AS tanarosztaly, osztalyok AS hallgatoosztaly, hallgatok
-WHERE tanarok.tanarId=tanitja.tanarId
-AND tanitja.osztalyId=tanarosztaly.osztalyId
+WHERE tanarok.id=tanitja.tanarId
+AND tanitja.osztalyId=tanarosztaly.id
 AND tanarok.nev=hallgatok.nev
-AND hallgatok.osztalyId=hallgatoosztaly.osztalyId
+AND hallgatok.osztalyId=hallgatoosztaly.id
 GROUP BY tanarok.nev;
 
 -- 12. feladat:
@@ -64,4 +64,4 @@ SELECT CONCAT(kezdeseve, "-", vegzeseve) AS `Évfolyam`, nev AS `Hallgató neve`
 FROM osztalyok
 INNER JOIN hallgatok
 ON osztalyok.id = hallgatok.osztalyId 
-ORDER BY idoszak, nev;
+ORDER BY kezdeseve, nev;
