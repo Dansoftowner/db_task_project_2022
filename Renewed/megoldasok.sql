@@ -2,6 +2,8 @@
 
 -- 1. feladat:
 
+-- 2. feladat:
+
 -- 3. feladat:
 
 -- 4. feladat:
@@ -19,5 +21,3 @@
 -- 10. feladat:
 
 -- 11. feladat:
-
--- 12. feladat:
