@@ -42,7 +42,7 @@ GROUP BY tanarok.nev
 HAVING COUNT(tanarok.nev) > 1;
 
 -- 8. feladat:
-SELECT MIN(kezdeseve+1) FROM osztalyok
+SELECT MIN(kezdeseve+1) AS `Elso_Ures` FROM osztalyok
 WHERE kezdeseve+1 NOT IN ( SELECT kezdeseve FROM osztalyok );
 
 -- 9. feladat:
