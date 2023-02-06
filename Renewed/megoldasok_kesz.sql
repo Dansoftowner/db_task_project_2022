@@ -29,9 +29,7 @@ WHERE (vegzeseve - kezdeseve) = 5
 ORDER BY kezdeseve;
 
 -- 7. feladat:
-SELECT
-  tanarok.nev,
-  osztalyok.vegzeseve
+SELECT tanarok.nev
 FROM tanitja
   INNER JOIN tanarok
     ON tanitja.tanarId = tanarok.id
