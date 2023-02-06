@@ -20,7 +20,7 @@ WHERE nev = 'Sipos Edina';
 
 -- 5. feladat:
 INSERT INTO hallgatok (id, osztalyid, nev, ferfi)
-  VALUES (1091, 92, 'Bach Kata', 0);
+  VALUES (1091, (SELECT id FROM osztalyok ORDER BY vegzeseve DESC LIMIT 1), 'Bach Kata', 0);
 
 -- 6. feladat:
 SELECT kezdeseve 
