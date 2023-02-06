@@ -32,13 +32,13 @@ CREATE TABLE IF NOT EXISTS hallgatok(
   CONSTRAINT fk_hallgatok_osztalyok FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
 );
 
-CREATE TABLE IF NOT EXISTS tanitja(
+CREATE TABLE IF NOT EXISTS tanitjak(
   id INT NOT NULL AUTO_INCREMENT,
   tanarId INT NOT NULL,
   osztalyId INT NOT NULL,
   PRIMARY KEY(id),
-  CONSTRAINT fk_tanitja_tanarok FOREIGN KEY(tanarId) REFERENCES tanarok(id),
-  CONSTRAINT fk_tanitja_osztalyok FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
+  CONSTRAINT fk_tanitjak_tanarok FOREIGN KEY(tanarId) REFERENCES tanarok(id),
+  CONSTRAINT fk_tanitjak_osztalyok FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
 );
 
 INSERT INTO tanarok (id, nev)
@@ -1254,7 +1254,7 @@ INSERT INTO hallgatok (id, osztalyId, nev, ferfi)
   (1089, 71, 'Böröndy Katalin', 0),
   (1090, 83, 'Felvinczy Győző', -1);
 
-INSERT INTO tanitja (tanarId, osztalyId)
+INSERT INTO tanitjak (tanarId, osztalyId)
   VALUES (1, 84),
   (2, 23),
   (2, 31),

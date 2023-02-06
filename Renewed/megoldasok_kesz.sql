@@ -30,11 +30,11 @@ ORDER BY kezdeseve;
 
 -- 7. feladat:
 SELECT tanarok.nev
-FROM tanitja
+FROM tanitjak
   INNER JOIN tanarok
-    ON tanitja.tanarId = tanarok.id
+    ON tanitjak.tanarId = tanarok.id
   INNER JOIN osztalyok
-    ON tanitja.osztalyId = osztalyok.id
+    ON tanitjak.osztalyId = osztalyok.id
 WHERE osztalyok.vegzeseve BETWEEN 1970 AND 1979
 GROUP BY tanarok.nev
 HAVING COUNT(tanarok.nev) > 1;
@@ -46,13 +46,13 @@ WHERE (kezdeseve + 1) NOT IN ( SELECT kezdeseve FROM osztalyok );
 -- 9. feladat:
 SELECT Count(id) AS hiányzik
 FROM osztalyok
-WHERE id NOT IN (SELECT osztalyId FROM tanitja);
+WHERE id NOT IN (SELECT osztalyId FROM tanitjak);
 
 -- 10. feladat:
 SELECT tanarok.nev, MIN(tanarosztaly.kezdeseve) AS kezdes
-FROM tanarok, tanitja, osztalyok AS tanarosztaly, osztalyok AS hallgatoosztaly, hallgatok
-WHERE tanarok.id=tanitja.tanarId
-AND tanitja.osztalyId=tanarosztaly.id
+FROM tanarok, tanitjak, osztalyok AS tanarosztaly, osztalyok AS hallgatoosztaly, hallgatok
+WHERE tanarok.id=tanitjak.tanarId
+AND tanitjak.osztalyId=tanarosztaly.id
 AND tanarok.nev=hallgatok.nev
 AND hallgatok.osztalyId=hallgatoosztaly.id
 GROUP BY tanarok.nev;
