@@ -1,10 +1,5 @@
 ﻿-- A feladatok megoldására elkészített SQL parancsokat illessze be a feladat sorszáma után!
 
--- 1. feladat:
-CREATE DATABASE szinesz 
-DEFAULT CHARACTER SET utf8 
-COLLATE utf8_hungarian_ci;
-
 -- 2. feladat:
 INSERT INTO tanarok (id, nev) 
   VALUES (2022, 'Kovács Edina');
