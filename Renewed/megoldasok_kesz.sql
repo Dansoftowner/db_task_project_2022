@@ -39,17 +39,19 @@ SELECT MIN(kezdeseve + 1) AS `Elso_Ures` FROM osztalyok
 WHERE (kezdeseve + 1) NOT IN ( SELECT kezdeseve FROM osztalyok );
 
 -- 9. feladat:
-SELECT Count(id) AS hiányzik
+SELECT Count(id) AS `hianyzik`
 FROM osztalyok
 WHERE id NOT IN (SELECT osztalyId FROM tanitjak);
 
 -- 10. feladat:
-SELECT tanarok.nev, MIN(tanarosztaly.kezdeseve) AS kezdes
-FROM tanarok, tanitjak, osztalyok AS tanarosztaly, osztalyok AS hallgatoosztaly, hallgatok
-WHERE tanarok.id=tanitjak.tanarId
-AND tanitjak.osztalyId=tanarosztaly.id
-AND tanarok.nev=hallgatok.nev
-AND hallgatok.osztalyId=hallgatoosztaly.id
+SELECT tanarok.nev, MIN(osztalyok.kezdeseve) AS `kezdes`
+FROM tanitjak
+  INNER JOIN tanarok 
+    ON tanarok.id = tanitjak.tanarId
+  INNER JOIN osztalyok 
+    ON osztalyok.id = tanitjak.osztalyId
+  INNER JOIN hallgatok
+    ON hallgatok.nev = tanarok.nev
 GROUP BY tanarok.nev;
 
 -- 11. feladat:
