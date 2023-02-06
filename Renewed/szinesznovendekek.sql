@@ -3,39 +3,36 @@ SET sql_notes = 0;
 
 DROP DATABASE IF EXISTS szinesz;
 
-CREATE DATABASE szinesz 
-DEFAULT CHARACTER SET utf8 
-COLLATE utf8_hungarian_ci;
+CREATE DATABASE szinesz DEFAULT CHARACTER SET utf8 COLLATE utf8_hungarian_ci;
 
 USE szinesz;
 
-CREATE TABLE IF NOT EXISTS tanarok(
-  id INT NOT NULL,
-  nev VARCHAR(100) NOT NULL,
+CREATE TABLE tanarok(
+  id int,
+  nev varchar(100) NOT NULL UNIQUE,
   PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS  osztalyok(
-  id INT NOT NULL, 
-  kezdeseve INT NOT NULL,
-  vegzeseve INT NOT NULL,
+CREATE TABLE osztalyok(
+  id int, 
+  kezdeseve int NOT NULL,
+  vegzeseve int NOT NULL,
   PRIMARY KEY(id)
 );
 
-CREATE TABLE IF NOT EXISTS hallgatok(
-  id INT NOT NULL, 
-  osztalyId INT NOT NULL, 
-  nev VARCHAR(100) NOT NULL,
-  ferfi BOOLEAN,
-  
+CREATE TABLE hallgatok(
+  id int NOT NULL, 
+  osztalyId int NOT NULL, 
+  nev varchar(100) NOT NULL,
+  ferfi boolean,
   PRIMARY KEY(id),
   CONSTRAINT fk_hallgatok_osztalyok FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
 );
 
-CREATE TABLE IF NOT EXISTS tanitjak(
-  id INT NOT NULL AUTO_INCREMENT,
-  tanarId INT NOT NULL,
-  osztalyId INT NOT NULL,
+CREATE TABLE tanitjak(
+  id int NOT NULL AUTO_INCREMENT,
+  tanarId int NOT NULL,
+  osztalyId int NOT NULL,
   PRIMARY KEY(id),
   CONSTRAINT fk_tanitjak_tanarok FOREIGN KEY(tanarId) REFERENCES tanarok(id),
   CONSTRAINT fk_tanitjak_osztalyok FOREIGN KEY(osztalyId) REFERENCES osztalyok(id)
