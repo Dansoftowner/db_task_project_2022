@@ -24,19 +24,19 @@ WHERE (vegzeseve - kezdeseve) = 5
 ORDER BY kezdeseve;
 
 -- 7. feladat:
-SELECT tanarok.nev
+SELECT nev
 FROM tanitjak
   INNER JOIN tanarok
     ON tanitjak.tanarId = tanarok.id
   INNER JOIN osztalyok
     ON tanitjak.osztalyId = osztalyok.id
-WHERE osztalyok.vegzeseve BETWEEN 1970 AND 1979
-GROUP BY tanarok.nev
-HAVING COUNT(tanarok.nev) > 1;
+WHERE vegzeseve BETWEEN 1970 AND 1979
+GROUP BY nev
+HAVING COUNT(nev) > 1;
 
 -- 8. feladat:
 SELECT MIN(kezdeseve + 1) AS `Elso_Ures` FROM osztalyok
-WHERE (kezdeseve + 1) NOT IN ( SELECT kezdeseve FROM osztalyok );
+WHERE (kezdeseve + 1) NOT IN (SELECT kezdeseve FROM osztalyok);
 
 -- 9. feladat:
 SELECT Count(id) AS `hianyzik`
@@ -44,7 +44,7 @@ FROM osztalyok
 WHERE id NOT IN (SELECT osztalyId FROM tanitjak);
 
 -- 10. feladat:
-SELECT tanarok.nev, MIN(osztalyok.kezdeseve) AS `kezdes`
+SELECT tanarok.nev, MIN(kezdeseve) AS `kezdes`
 FROM tanitjak
   INNER JOIN tanarok 
     ON tanarok.id = tanitjak.tanarId
@@ -57,6 +57,6 @@ GROUP BY tanarok.nev;
 -- 11. feladat:
 SELECT CONCAT(kezdeseve, "-", vegzeseve) AS `Évfolyam`, nev AS `Hallgató neve`
 FROM osztalyok
-INNER JOIN hallgatok
-ON osztalyok.id = hallgatok.osztalyId 
+  INNER JOIN hallgatok
+    ON osztalyok.id = hallgatok.osztalyId 
 ORDER BY kezdeseve, nev;
