@@ -1,7 +1,5 @@
 -- A feladatok megoldására elkészített SQL parancsokat illessze be a feladat sorszáma után!
 
--- 1. feladat:
-
 -- 2. feladat:
 
 -- 3. feladat:
